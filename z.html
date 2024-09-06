@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dosya Yükleme</title>
+</head>
+<body>
+    <h2>Dosya Yükleme</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file">
+        <button type="submit">Yükle</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Sayfanın yenilenmesini engeller
+
+            let fileInput = document.getElementById('fileInput');
+            let formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            fetch('/about-us/agrarian-reform-history', { // Sunucuda /upload yoluna gönderir
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                document.getElementById('result').innerText = result; // Yükleme sonucunu gösterir
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = 'Yükleme başarısız: ' + error;
+            });
+        });
+    </script>
+</body>
+</html>
